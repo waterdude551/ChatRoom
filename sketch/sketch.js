@@ -1,7 +1,10 @@
+
+
 function setup() {
     createCanvas(800, 600);
     // prints show up in Inspect Element -> Console
     print("hello world!");
+    displayChoices();
 }
 
 
