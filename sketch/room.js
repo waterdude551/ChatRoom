@@ -3,7 +3,7 @@ let sprite
 let spriteImg
 let door
 let escapeDoor
-let speed = 100;
+let speed = 3;
 
 
 function preload(){
@@ -11,15 +11,16 @@ function preload(){
     bookshelf = loadImage('images/room_assets/bookshelf.png')
     desk = loadImage('images/room_assets/desk.png')
     room_outline = loadImage('images/room_assets/room_outline.png')
-    sprite = loadImage('images/room_assets/sprite.png')
+    spriteImg = loadImage('images/room_assets/sprite.png')
     door = loadImage('images/room_assets/door.png')
+    sprite = new Sprite(0,0) //SPRITE PRE LOADS HERE!
+
    
 }
 
 function setup(){
     createCanvas(1024, 768);
     frameRate(50);
-    sprite = new Sprite(0,0)
 }
 
 
@@ -32,11 +33,11 @@ function drawRoom(){
     image(bookshelf, 0,0)
     image(desk,0,0)
     image(door,0,0)
-    image(sprite,0,0)
     if(escapeDoor){
         image(door,0,0); //true for prototype purposes
     
     }
+    console.log("sprite:", sprite)
     sprite.move()
     sprite.display()
 
@@ -54,19 +55,19 @@ move(){
     }
 
     if(keyIsDown(RIGHT_ARROW)){
-    this.x += speed
+        this.x += speed
     }
     
     if(keyIsDown(UP_ARROW)){ 
         this.y -= speed
     }
     if(keyIsDown(DOWN_ARROW)){ 
-    this.y += speed
+        this.y += speed
     }
 }
 
 display(){
-    image(sprite, this.x, this.y)
+    image(spriteImg, this.x, this.y)
 }
 
 

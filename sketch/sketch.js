@@ -1,4 +1,4 @@
-let currentMode; // 0 for chat, 1 for room
+let currentMode; // 0 for chat, 1 for room, 2 upon program running for start screen
 
 function setup() {
     createCanvas(1024, 768);

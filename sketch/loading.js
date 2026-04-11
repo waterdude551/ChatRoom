@@ -36,6 +36,12 @@ function drawLoading() {
     totalText = biosText + startText;
     textSize(27)
     text(totalText, 18,190, 1024,768)
+
+    function keyPressed(){
+        if (key == 'F12') {
+            currentMode = 1;
+        }
+    }
     
     //figure out typewriter effect later after loading scr done
     /*
