@@ -1,9 +1,11 @@
 let FRAMES_BETWEEN_CHARS = 5;
 let MARGIN_SIZE = 40;
 let FONT_SIZE = 28;
-let showingChoices = false;
 let c1;
 let c2;
+let awaitingInput = false;
+let messages = [];
+let messagesBottomY;
 
 class Choice {
     constructor(action, message) {
@@ -24,6 +26,18 @@ class Choice {
         this.height;
     }
 }
+
+class Message {
+    constructor(sender, message) {
+        this.content = "<" + sender + ">: " + message;
+        this.x = MARGIN_SIZE;
+        this.y;
+        this.width = width - 2 * MARGIN_SIZE;
+        this.height;
+    }
+}
+
+// CHOICE
 
 function displayChoices(...choices) { // variable length Choice array
     // print("called displayChoices");
@@ -79,23 +93,62 @@ function hoverChoice(choice) {
     typeMessage(choice);
 }
 
-function drawChatScreen() {
+// MESSAGE
+
+function mouseClicked() {
+    let message;
+    if (c1.isHoveredOver) {
+        print("chose 1");
+        message = new Message("u", c1.message);
+        messages.push(message);
+    } else if (c2.isHoveredOver) {
+        print("chose 2");
+        message = new Message("u", c2.message);
+        messages.push(message);
+    }
+}
+
+// message pushing :)
+// function keyPressed() {
+//     if (key === 's') {
+//         messages.push(new Message("A", "Hello."));
+//     }
+// }
+
+function displayMessages() {
+    let y = MARGIN_SIZE;
+    for (var i = 0; i < messages.length; i++) {
+
+        messages[i].y = y;
+        messages[i].height = FONT_SIZE*1.25;
+        y += messages[i].height;
+        fill(WHITE);
+        text(messages[i].content, messages[i].x, messages[i].y);
+        if (y > .78*height) {
+            messages = messages.slice(1);
+            i--;
+        }
+    }
+}
+
+// DRAW
+
+function drawChat() {
     background(BLACK);
 
     textFont(font);
     textSize(FONT_SIZE);
 
-    if (!showingChoices) {
-        showingChoices = true;
+    if (!awaitingInput) {
+        awaitingInput = true;
+        c1 = new Choice("(Action 1)", "Message message message 1.");
+        c2 = new Choice("(Action 2)", "Message message message 2.");
     }
 
-    if (!c1) c1 = new Choice("(Action 1)", "Message message message 1.");
-    if (!c2) c2 = new Choice("(Action 2)", "Message message message 2.");
-    displayChoices(c1, c2);
-    checkHoverChoice(c1);
-    checkHoverChoice(c2);
-}
-
-function drawChat() {
-    drawChatScreen();
+    if (awaitingInput) {
+        displayChoices(c1, c2);
+        checkHoverChoice(c1);
+        checkHoverChoice(c2);
+    }
+    displayMessages();
 }
