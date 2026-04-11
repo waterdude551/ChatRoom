@@ -18,7 +18,7 @@ class Choice {
         this.x = MARGIN_SIZE;
         this.y;
         this.width = width - 2 * MARGIN_SIZE;
-        this.height = ;
+        //this.height = ;
     }
 
     
