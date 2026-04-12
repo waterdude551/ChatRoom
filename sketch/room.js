@@ -5,12 +5,17 @@ let door
 let escapeDoor
 let speed = 3;
 let roomFont;
-//let popUpActive = false;
+
 let currentObject = null;
 let hoveredObject = null;
 let popUpText;
 let offsetX = 10;
 
+//for typewriter effect
+let typeTextShown = "";
+let typeIndex = 0;
+let typeCounter = 0;
+let typeSpeed = 3;
 
 //bounds for object hitboxes
 
@@ -76,9 +81,17 @@ function drawRoom(){
     hoveredObject = getHoveredObject();
     if (currentObject) {//if not null show popup
     rect(260, 540, 520, 180);
+    if (currentObject && typeIndex < popUpText.length) {
+    typeCounter++;
+
+    if (typeCounter % typeSpeed === 0) {
+        typeTextShown += popUpText[typeIndex];
+        typeIndex++;
+    }
+}
     textSize(30);
     textFont(roomFont);
-    text(popUpText, 275, 575);
+    text(typeTextShown, 275, 575);
     }
 }
 
@@ -130,16 +143,28 @@ function mousePressed() {
 
         if (currentObject === "bookshelf") {
             popUpText = "> It's a bookshelf filled with\n books.";
+             typeTextShown = "";
+             typeIndex = 0;
+            typeCounter = 0;
         }
 
         if (currentObject === "bed") {
             popUpText = "> It's your bed.";
+             typeTextShown = "";
+             typeIndex = 0;
+            typeCounter = 0;
         }
 
         if (currentObject === "desk") {
             popUpText = "> It's your computer.";
+             typeTextShown = "";
+             typeIndex = 0;
+            typeCounter = 0;
         }
     } else {
+         typeTextShown = "";
+             typeIndex = 0;
+            typeCounter = 0;
         currentObject = null;
         popUpText = ""; //close popup
     }
@@ -169,6 +194,7 @@ function getHoveredObject() {//store what uur in range of
 
     return null;
 }
+    
     
     
 
