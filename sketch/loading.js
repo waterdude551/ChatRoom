@@ -26,7 +26,7 @@ function drawLoading() {
     fill(255)
     textFont(boldFont); 
     biosText = "Award Modular BIOS v45 PG, An Energy Star Ally\nCopywrite (C)2026\n\nTEMPNAME P5 ACPI BIOS Beta\n80372782 CPU at 80MHz\nAward Plug and Play BIOS Extension v1.0a\nSerial Number 00011837\nSystem Date 0/1/2222\n\n";
-    startText = "Press F12 to enter\nPress F2 to exit";
+    startText = "Press F10 to enter\nPress F2 to exit";
     totalText = biosText + startText;
     textSize(27)
     text(totalText, 18,200, 1024,768)
@@ -47,7 +47,7 @@ function drawLoading() {
 
 function loadingKeyPressed(){
     print(key);
-    if (key == 'F12') {
+    if (key == 'F10') {
         currentMode = 0;
     }
 }
