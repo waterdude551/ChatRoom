@@ -17,8 +17,9 @@ function loadFonts() {
 function setup() {
     WHITE = color(204);
     BLACK = color(10);
-    loadFonts();
     createCanvas(1024, 768);
+    loadFonts();
+    loadDialogue();
     
     frameRate(60);
     currentMode = 0;
