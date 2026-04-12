@@ -2,10 +2,6 @@ let currentMode; // 0 for chat, 1 for room
 let WHITE;
 let BLACK;
 
-function preload() {
-
-}
-
 function loadFonts() {
     font = loadFont("/sketch/assets/fonts/UbuntuMono-Regular.ttf");
     boldFont = loadFont("/sketch/assets/fonts/UbuntuMono-Bold.ttf");
@@ -18,11 +14,13 @@ function setup() {
     WHITE = color(204);
     BLACK = color(10);
     createCanvas(1024, 768);
-    loadFonts();
+    loadLoading();
     loadDialogue();
+    loadRoom();
+    loadFonts();
     
     frameRate(60);
-    currentMode = 0;
+    currentMode = 2;
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }
@@ -34,11 +32,45 @@ function draw() {
             drawChat();
             break;
         case 1: // room
-
+            drawRoom();
+            break;
+        case 2: // loading
+            drawLoading(); 
             break;
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
     }
 
 }
 
+function keyPressed() {
+    switch (currentMode) {
+        case 0: // chat
+            chatKeyPressed();
+            break;
+        case 1: // room
+            
+            break;
+        case 2: // loading
+            loadingKeyPressed(); 
+            break;
+        default:
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+    }
+}
+
+function mouseClicked() {
+    switch (currentMode) {
+        case 0: // chat
+            chatMouseClicked();
+            break;
+        case 1: // room
+            roomMousePressed();
+            break;
+        case 2: // loading
+            drawLoading(); 
+            break;
+        default:
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+    }
+}
