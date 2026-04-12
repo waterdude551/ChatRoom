@@ -3,7 +3,7 @@ let currentMode; // 0 for chat, 1 for room, 2 upon program running for start scr
 function setup() {
     createCanvas(1024, 768);
     frameRate(60);
-    currentMode = 1;
+    currentMode = 2;
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }

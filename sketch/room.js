@@ -9,7 +9,6 @@ let roomFont;
 let currentObject = null;
 let hoveredObject = null;
 let popUpText;
-let offsetX = 10;
 
 //for typewriter effect
 let typeTextShown = "";
@@ -23,7 +22,7 @@ let bedMinX = 570, bedMaxX = 950, bedMinY = 65, bedMaxY = 320
 
 let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
 
-let deskMinX = 80, deskMaxX = 330, deskMinY = 90, deskMaxY = 350
+let deskMinX = 70, deskMaxX = 330, deskMinY = 90, deskMaxY = 370
 
 function preload(){
     /*
@@ -88,7 +87,8 @@ function drawRoom(){
         typeTextShown += popUpText[typeIndex];
         typeIndex++;
     }
-}
+}   
+    
     textSize(30);
     textFont(roomFont);
     text(typeTextShown, 275, 575);
