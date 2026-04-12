@@ -37,6 +37,10 @@ function draw() {
         case 2: // loading
             drawLoading(); 
             break;
+        case 3: //ending 
+            drawEnding();
+            break;
+
         default:
             print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
     }
