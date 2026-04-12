@@ -42,7 +42,7 @@ function draw() {
             break;
 
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 
 }
@@ -53,13 +53,14 @@ function keyPressed() {
             chatKeyPressed();
             break;
         case 1: // room
-            
             break;
         case 2: // loading
             loadingKeyPressed(); 
             break;
+        case 3: //ending
+            break;
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 }
 
@@ -74,7 +75,9 @@ function mouseClicked() {
         case 2: // loading
             drawLoading(); 
             break;
+        case 3: //ending
+            break;
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 }
