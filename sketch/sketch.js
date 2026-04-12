@@ -19,6 +19,7 @@ function setup() {
     loadRoom();
     loadFonts();
     
+    loadEnding();
     frameRate(60);
     currentMode = 2;
     // prints show up in Inspect Element -> Console
