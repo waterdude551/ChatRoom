@@ -9,26 +9,30 @@ let roomFont;
 let currentObject = null;
 let hoveredObject = null;
 let popUpText;
-
+let offsetX = 10;
 
 
 //bounds for object hitboxes
 
 let bedMinX = 570, bedMaxX = 950, bedMinY = 65, bedMaxY = 320
 
-let bookshelfMinX = 630, bookshelfMaxX = 930, bookshelfMinY = 550, bookshelfMaxY = 720
+let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
 
 let deskMinX = 80, deskMaxX = 330, deskMinY = 90, deskMaxY = 350
 
 function preload(){
+    /*
     bed = loadImage('images/room_assets/bed.png')
     bookshelf = loadImage('images/room_assets/bookshelf.png')
     desk = loadImage('images/room_assets/desk.png')
     room_outline = loadImage('images/room_assets/room_outline.png')
-    spriteImg = loadImage('images/room_assets/sprite.png')
     door = loadImage('images/room_assets/door.png')
+    */
+    
+    spriteImg = loadImage('images/room_assets/sprite.png')
+   roombg = loadImage('images/room_assets/roombg.png')
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf')
-    sprite = new Sprite(0,0) //SPRITE PRE LOADS HERE!
+    sprite = new Sprite(400,400) //SPRITE PRE LOADS HERE!
 
    
 }
@@ -36,7 +40,7 @@ function preload(){
 function setup(){
     createCanvas(1024, 768);
     frameRate(50);
-    textFont(roomFont);
+    
 }
 
 
@@ -44,7 +48,9 @@ function setup(){
 function drawRoom(){
     
     background(255)
+    
     //draw stuff in room
+    /*
     image(room_outline, 0, 0)
     image(bed,0,0)
     image(bookshelf, 0,0)
@@ -54,6 +60,9 @@ function drawRoom(){
         image(door,0,0); //true for prototype purposes
     
     }
+        */
+        
+    image(roombg,0,0)
     console.log("sprite:", sprite)
     sprite.move()
     sprite.display()
@@ -68,6 +77,7 @@ function drawRoom(){
     if (currentObject) {//if not null show popup
     rect(260, 540, 520, 180);
     textSize(30);
+    textFont(roomFont);
     text(popUpText, 275, 575);
     }
 }
@@ -96,7 +106,7 @@ move(){
     if(keyIsDown(83)){ 
         this.y += speed
     }
-    
+   
 }
 
 display(){
@@ -119,7 +129,7 @@ function mousePressed() {
         currentObject = hoveredObject;
 
         if (currentObject === "bookshelf") {
-            popUpText = "> It's a bookshelf filled with books.";
+            popUpText = "> It's a bookshelf filled with\n books.";
         }
 
         if (currentObject === "bed") {
