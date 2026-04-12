@@ -9,7 +9,7 @@ let npcMessageQueue = [];
 let currentChat = 0;
 let canExit = false;// debug
 
-function keyPressed() {
+function chatKeyPressed() {
     if (key === 's') {
         print(
             "choice1: " + choice1.message 
@@ -123,13 +123,14 @@ function checkHoverChoice(choice) {
 }
 // MESSAGE
 
-function mouseClicked() {
+function chatMouseClicked() {
     print("clicked at " + mouseX, mouseY);
     if (choice1 && choice2) {
         choiceClick();
     }
     if (canExit && mouseX > width-MARGIN_SIZE-32 && mouseY > MARGIN_SIZE && mouseX < width-MARGIN_SIZE && mouseY < MARGIN_SIZE + 32) {
-        print("exiting chat"); // TODO link up
+        print("exiting chat");
+        currentMode = 1;
     }
 }
 

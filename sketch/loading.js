@@ -4,14 +4,8 @@ let logo;
 
 //this is for loading screen stuff
 
-function preload(){
-    biosfont = loadFont('assets/fonts/bios_font.otf')
+function loadLoading(){
     logo = loadImage('images/fakemotherboard.png')
-}
-
-function setup() {
-    createCanvas(1024, 768);
-    frameRate(15)
 }
 
 
@@ -30,18 +24,14 @@ function drawLoading() {
     
     //have typing effect load the bios info
     fill(255)
-    textFont(biosfont); 
+    textFont(boldFont); 
     biosText = "Award Modular BIOS v45 PG, An Energy Star Ally\nCopywrite (C)2026\n\nTEMPNAME P5 ACPI BIOS Beta\n80372782 CPU at 80MHz\nAward Plug and Play BIOS Extension v1.0a\nSerial Number 00011837\nSystem Date 0/1/2222\n\n";
     startText = "Press F12 to enter\nPress F2 to exit";
     totalText = biosText + startText;
     textSize(27)
-    text(totalText, 18,190, 1024,768)
+    text(totalText, 18,200, 1024,768)
 
-    function keyPressed(){
-        if (key == 'F12') {
-            currentMode = 1;
-        }
-    }
+
     
     //figure out typewriter effect later after loading scr done
     /*
@@ -55,6 +45,12 @@ function drawLoading() {
 
 }
 
+function loadingKeyPressed(){
+    print(key);
+    if (key == 'F12') {
+        currentMode = 0;
+    }
+}
 
 
 

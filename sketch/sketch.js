@@ -14,11 +14,13 @@ function setup() {
     WHITE = color(204);
     BLACK = color(10);
     createCanvas(1024, 768);
-    loadFonts();
+    loadLoading();
     loadDialogue();
+    loadRoom();
+    loadFonts();
     
     frameRate(60);
-    currentMode = 0;
+    currentMode = 1;
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }
@@ -41,3 +43,34 @@ function draw() {
 
 }
 
+function keyPressed() {
+    switch (currentMode) {
+        case 0: // chat
+            chatKeyPressed();
+            break;
+        case 1: // room
+            
+            break;
+        case 2: // loading
+            loadingKeyPressed(); 
+            break;
+        default:
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+    }
+}
+
+function mouseClicked() {
+    switch (currentMode) {
+        case 0: // chat
+            chatMouseClicked();
+            break;
+        case 1: // room
+            roomMousePressed();
+            break;
+        case 2: // loading
+            drawLoading(); 
+            break;
+        default:
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+    }
+}

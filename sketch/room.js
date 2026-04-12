@@ -25,7 +25,7 @@ let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY
 
 let deskMinX = 80, deskMaxX = 330, deskMinY = 90, deskMaxY = 350
 
-function preload(){
+function loadRoom(){
     /*
     bed = loadImage('images/room_assets/bed.png')
     bookshelf = loadImage('images/room_assets/bookshelf.png')
@@ -35,21 +35,12 @@ function preload(){
     */
     
     spriteImg = loadImage('images/room_assets/sprite.png')
-   roombg = loadImage('images/room_assets/roombg.png')
+    roombg = loadImage('images/room_assets/roombg.png')
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf')
     sprite = new Sprite(400,400) //SPRITE PRE LOADS HERE!
 
    
 }
-
-function setup(){
-    createCanvas(1024, 768);
-    frameRate(50);
-    
-}
-
-
-
 function drawRoom(){
     
     background(255)
@@ -80,18 +71,20 @@ function drawRoom(){
 
     hoveredObject = getHoveredObject();
     if (currentObject) {//if not null show popup
-    rect(260, 540, 520, 180);
-    if (currentObject && typeIndex < popUpText.length) {
-    typeCounter++;
+        fill(WHITE);
+        rect(260, 540, 520, 180);
+        if (currentObject && typeIndex < popUpText.length) {
+            typeCounter++;
 
-    if (typeCounter % typeSpeed === 0) {
-        typeTextShown += popUpText[typeIndex];
-        typeIndex++;
-    }
-}
-    textSize(30);
-    textFont(roomFont);
-    text(typeTextShown, 275, 575);
+            if (typeCounter % typeSpeed === 0) {
+                typeTextShown += popUpText[typeIndex];
+                typeIndex++;
+            }
+        }
+        fill(BLACK);
+        textSize(30);
+        textFont(roomFont);
+        text(typeTextShown, 275, 575);
     }
 }
 
@@ -137,7 +130,7 @@ function inRange(value, min, max) {
 }
 
 
-function mousePressed() {
+function roomMousePressed() {
     if (hoveredObject) {
         currentObject = hoveredObject;
 
