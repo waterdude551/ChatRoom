@@ -628,7 +628,7 @@ function setup() {
     
     loadEnding();
     frameRate(60);
-    currentMode = 1;
+    currentMode = 2;
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }
