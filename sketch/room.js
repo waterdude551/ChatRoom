@@ -9,7 +9,12 @@ let roomFont;
 let currentObject = null;
 let hoveredObject = null;
 let popUpText;
-let offsetX = 10;
+
+let yesButton;
+let noButton;
+let buttonsShown = false;
+let buttonsInitialized = false;
+
 
 //for typewriter effect
 let typeTextShown = "";
@@ -23,7 +28,7 @@ let bedMinX = 570, bedMaxX = 950, bedMinY = 65, bedMaxY = 320
 
 let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
 
-let deskMinX = 80, deskMaxX = 330, deskMinY = 90, deskMaxY = 350
+let deskMinX = 70, deskMaxX = 330, deskMinY = 90, deskMaxY = 370
 
 function loadRoom(){
     /*
@@ -64,10 +69,31 @@ function drawRoom(){
     sprite.display()
     
        
-    /*
-    sprite.x = constrain(sprite.x, 0, width) how do i constrain 
-    sprite.y = constrain(sprite.y, 0 ,height)
-    */
+    
+   //for sleep to trigger end scr
+    if (!buttonsInitialized) {
+    yesButton = createButton("> Sleep");
+    noButton = createButton(" > Look around");
+
+    yesButton.position(340, 600);
+    noButton.position(600, 600);
+
+    yesButton.mousePressed(() => {
+        currentMode = 3;
+        hideButtons();
+    });
+
+    noButton.mousePressed(() => {
+        currentObject = null;
+        popUpText = "";
+        hideButtons();
+    });
+
+    yesButton.hide();
+    noButton.hide();
+
+    buttonsInitialized = true;
+}
 
     hoveredObject = getHoveredObject();
     if (currentObject) {//if not null show popup
@@ -81,6 +107,10 @@ function drawRoom(){
                 typeIndex++;
             }
         }
+        if (currentObject === "bed" && typeIndex >= popUpText.length && !buttonsShown) {
+     showButtons();
+     buttonsShown = true;
+}
         fill(BLACK);
         textSize(30);
         textFont(roomFont);
@@ -131,6 +161,7 @@ function inRange(value, min, max) {
 
 
 function roomMousePressed() {
+    
     if (hoveredObject) {
         currentObject = hoveredObject;
 
@@ -142,10 +173,13 @@ function roomMousePressed() {
         }
 
         if (currentObject === "bed") {
-            popUpText = "> It's your bed.";
+            popUpText = "> It's your bed. Go to sleep?";
              typeTextShown = "";
              typeIndex = 0;
             typeCounter = 0;
+            buttonsShown = false;
+            hideButtons();
+           
         }
 
         if (currentObject === "desk") {
@@ -189,7 +223,15 @@ function getHoveredObject() {//store what uur in range of
 }
     
     
-    
+function showButtons() {
+    yesButton.show();
+    noButton.show();
+}
+
+function hideButtons() {
+    yesButton.hide();
+    noButton.hide();
+}
 
 
     
