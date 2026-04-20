@@ -82,3 +82,20 @@ function mouseClicked() {
             print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 }
+
+function goToStart() {
+    currentMode = 2;
+}
+
+function goToChat() {
+    currentMode = 0;
+    initChat(currentChat);
+}
+
+function goToRoom() {
+    currentMode = 1;
+}
+
+function goToEnd() {
+    currentMode = 3;
+}

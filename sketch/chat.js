@@ -7,8 +7,19 @@ let awaitingInput = false;
 let messages = [];
 let npcMessageQueue = [];
 let currentChat = 0; // SET TO 0 FOR PROD :)
-let canExit = false;// debug
+let canExit = false;
 
+function initChat(chatNumber) {
+    // clear buffers, 
+    currentChat = chatNumber;
+    awaitingInput = false;
+    messages = [];
+    npcMessageQueue = [];
+    npcMessageQueue.push(getMsg(0));
+} 
+
+
+// debug
 function chatKeyPressed() {
     if (key === 's') {
         print(
@@ -128,9 +139,11 @@ function chatMouseClicked() {
     if (choice1 && choice2) {
         choiceClick();
     }
+    // exit button
     if (canExit && mouseX > width-MARGIN_SIZE-32 && mouseY > MARGIN_SIZE && mouseX < width-MARGIN_SIZE && mouseY < MARGIN_SIZE + 32) {
         print("exiting chat");
-        currentMode = 1;
+        goToRoom();
+        currentChat += 1;
     }
 }
 
