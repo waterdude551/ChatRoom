@@ -1,4 +1,3 @@
-let endingText;
 let endingbg;
 
 function loadEnding() {
