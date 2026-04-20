@@ -9,5 +9,5 @@ function loadEnding() {
 function drawEnding() {
     console.log('ending should come up');
 
-    image(endingbg, 0, 0, width, height);
+    image(endingbg, 0, 0,); 
 }
