@@ -6,7 +6,7 @@ let choice2;
 let awaitingInput = false;
 let messages = [];
 let npcMessageQueue = [];
-let currentChat = 0;
+let currentChat = 0; // SET TO 0 FOR PROD :)
 let canExit = false;// debug
 
 function chatKeyPressed() {
@@ -143,13 +143,21 @@ function choiceClick() {
         print("chose 1");
         message = new Prompt("u", choice1.message);
         messages.push(message);
-        npcMessageQueue.push(getMsg(choice1.npcReply));
+        if (choice1.npcReply) {
+            npcMessageQueue.push(getMsg(choice1.npcReply)); 
+        } else { // legit just for ending
+            currentMode = 3;
+        }
         awaitingInput = false;
     } else if (choice2.isHoveredOver) {
         print("chose 2");
         message = new Prompt("u", choice2.message);
         messages.push(message);
-        npcMessageQueue.push(getMsg(choice2.npcReply));
+        if (choice2.npcReply) {
+            npcMessageQueue.push(getMsg(choice2.npcReply));
+        } else {
+            currentMode = 3; // this could be written better but :P
+        }
         awaitingInput = false;
     }
 }

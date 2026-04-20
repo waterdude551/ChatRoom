@@ -1,12 +1,12 @@
-let currentMode; // 0 for chat, 1 for room
+let currentMode; // 0 for chat, 1 for room, 2 for start, 3 for end
 let WHITE;
 let BLACK;
 
 function loadFonts() {
-    font = loadFont("/sketch/assets/fonts/UbuntuMono-Regular.ttf");
-    boldFont = loadFont("/sketch/assets/fonts/UbuntuMono-Bold.ttf");
-    italicFont = loadFont("/sketch/assets/fonts/UbuntuMono-Italic.ttf");
-    boldItalicFont = loadFont("/sketch/assets/fonts/UbuntuMono-BoldItalic.ttf");
+    font = loadFont("/assets/fonts/UbuntuMono-Regular.ttf");
+    boldFont = loadFont("/assets/fonts/UbuntuMono-Bold.ttf");
+    italicFont = loadFont("/assets/fonts/UbuntuMono-Italic.ttf");
+    boldItalicFont = loadFont("/assets/fonts/UbuntuMono-BoldItalic.ttf");
     // print("loaded fonts!");
 }
 
@@ -21,7 +21,7 @@ function setup() {
     
     loadEnding();
     frameRate(60);
-    currentMode = 2;
+    currentMode = 2; // CHANGE TO 2 FOR PROD :)
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }
