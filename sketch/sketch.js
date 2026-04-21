@@ -16,6 +16,7 @@ function setup() {
     createCanvas(1024, 768);
     loadLoading();
     loadDialogue();
+    loadDescriptions();
     loadRoom();
     loadFonts();
     
@@ -65,7 +66,7 @@ function keyPressed() {
     }
 }
 
-function mouseClicked() {
+function mousePressed() {
     switch (currentMode) {
         case 0: // chat
             chatMouseClicked();
