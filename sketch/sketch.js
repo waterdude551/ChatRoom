@@ -1,12 +1,12 @@
-let currentMode; // 0 for chat, 1 for room
+let currentMode; // 0 for chat, 1 for room, 2 for start, 3 for end
 let WHITE;
 let BLACK;
 
 function loadFonts() {
-    font = loadFont("/sketch/assets/fonts/UbuntuMono-Regular.ttf");
-    boldFont = loadFont("/sketch/assets/fonts/UbuntuMono-Bold.ttf");
-    italicFont = loadFont("/sketch/assets/fonts/UbuntuMono-Italic.ttf");
-    boldItalicFont = loadFont("/sketch/assets/fonts/UbuntuMono-BoldItalic.ttf");
+    font = loadFont("/assets/fonts/UbuntuMono-Regular.ttf");
+    boldFont = loadFont("/assets/fonts/UbuntuMono-Bold.ttf");
+    italicFont = loadFont("/assets/fonts/UbuntuMono-Italic.ttf");
+    boldItalicFont = loadFont("/assets/fonts/UbuntuMono-BoldItalic.ttf");
     // print("loaded fonts!");
 }
 
@@ -19,8 +19,9 @@ function setup() {
     loadRoom();
     loadFonts();
     
+    loadEnding();
     frameRate(60);
-    currentMode = 2;
+    currentMode = 2; // CHANGE TO 2 FOR PROD :)
     // prints show up in Inspect Element -> Console
     print("hello world!");
 }
@@ -37,8 +38,12 @@ function draw() {
         case 2: // loading
             drawLoading(); 
             break;
+        case 3: //ending 
+            drawEnding();
+            break;
+
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 
 }
@@ -49,13 +54,14 @@ function keyPressed() {
             chatKeyPressed();
             break;
         case 1: // room
-            
             break;
         case 2: // loading
             loadingKeyPressed(); 
             break;
+        case 3: //ending
+            break;
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
 }
 
@@ -70,7 +76,26 @@ function mouseClicked() {
         case 2: // loading
             drawLoading(); 
             break;
+        case 3: //ending
+            break;
         default:
-            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2");
+            print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
     }
+}
+
+function goToStart() {
+    currentMode = 2;
+}
+
+function goToChat() {
+    currentMode = 0;
+    initChat(currentChat);
+}
+
+function goToRoom() {
+    currentMode = 1;
+}
+
+function goToEnd() {
+    currentMode = 3;
 }

@@ -52,12 +52,17 @@ function loadRoom(){
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf')
     sprite = new Sprite(400,400) //SPRITE PRE LOADS HERE!
    
+    cursorClick = loadImage('images/clickable.png')
+    cursorDefault = loadImage('images/defaultCursor.png')
+
    
 }
 function drawRoom(){
     
     background(255)
     cursorChange();
+    
+ 
         
     image(roombg,0,0)
     console.log("sprite:", sprite)
@@ -176,7 +181,7 @@ function inRange(value, min, max) {
 
 
 function roomMousePressed() {
-    let chats = 2; //tracker  for testing chat change in popup
+    let chats = 2; //tracker 
     if(bedQuestionShown) {
         return; 
     }
@@ -184,7 +189,7 @@ function roomMousePressed() {
         currentObject = hoveredObject;
 
         if (currentObject === "bookshelf") {
-            switch(chats){  //for sake of testing
+            switch(chats){ 
                 case 1: popUpText = "> It's a bookshelf\n filled with books.";
                 case 2: popUpText = "> You see a book about jokes.\nMost of them suck.";
             }
@@ -218,6 +223,16 @@ function roomMousePressed() {
         popUpText = ""; //close popup
     }
 }
+/*
+function changeCursor(){
+    if(hoveredObject) {
+        cursor(cursorClick);
+    }
+    else{
+        cursor(cursorDefault);
+    }
+}   
+    */
 
 
 function getHoveredObject() {//store what uur in range of
@@ -225,6 +240,7 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, bookshelfMinX, bookshelfMaxX) &&
         inRange(sprite.y, bookshelfMinY, bookshelfMaxY)
     ) {
+        cursor(cursorClick)
         return "bookshelf";
     }
 
@@ -232,6 +248,7 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, bedMinX, bedMaxX) &&
         inRange(sprite.y, bedMinY, bedMaxY)
     ) {
+        cursor(cursorClick)
         return "bed";
     }
 
@@ -239,8 +256,10 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, deskMinX, deskMaxX) &&
         inRange(sprite.y, deskMinY, deskMaxY)
     ) {
+        cursor(cursorClick)
         return "desk";
     }
+    cursor(cursorDefault);
     return null;
 }
 
