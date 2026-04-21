@@ -30,7 +30,7 @@ function loadEnding() {
 function drawEnding() {
   background(0);
 
-  //top bar (terminal header)
+  //top bar from temrinal
   fill(30);
   rect(0, 0, width, 30);
 
@@ -45,7 +45,7 @@ function drawEnding() {
   }
   
   //draw lines
-  fill(0, 255, 120);
+    fill(255, 253, 163)
   textSize(20);
 
   for (let i = 0; i < index; i++) {
