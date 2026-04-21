@@ -218,6 +218,16 @@ function roomMousePressed() {
         popUpText = ""; //close popup
     }
 }
+/*
+function changeCursor(){
+    if(hoveredObject) {
+        cursor(cursorClick);
+    }
+    else{
+        cursor(cursorDefault);
+    }
+}   
+    */
 
 
 function getHoveredObject() {//store what uur in range of
@@ -225,6 +235,7 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, bookshelfMinX, bookshelfMaxX) &&
         inRange(sprite.y, bookshelfMinY, bookshelfMaxY)
     ) {
+        cursor(cursorClick)
         return "bookshelf";
     }
 
@@ -232,6 +243,7 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, bedMinX, bedMaxX) &&
         inRange(sprite.y, bedMinY, bedMaxY)
     ) {
+        cursor(cursorClick)
         return "bed";
     }
 
@@ -239,6 +251,7 @@ function getHoveredObject() {//store what uur in range of
         inRange(sprite.x, deskMinX, deskMaxX) &&
         inRange(sprite.y, deskMinY, deskMaxY)
     ) {
+        cursor(cursorClick)
         return "desk";
     }
     return null;
