@@ -58,10 +58,10 @@ roomDesc[6] = new roomDesc(
 function getPopUpText(){ 
     switch(currentObject) {
         case "bed":
-            return roomDescs[currentChats].bedDesc;
+            return roomDescs[currentChat].bedDesc;
         case "bookshelf":
-            return roomDescs[currentChats].bookshelfDesc;
+            return roomDescs[currentChat].bookshelfDesc;
         case "computer":
-            return roomDescs[currentChats].computerDesc; //wonder how this function will work with follow up dialogue e.g. computer log on or bed sleep option ?
+            return roomDescs[currentChat].computerDesc; //wonder how this function will work with follow up dialogue e.g. computer log on or bed sleep option ?
     }
 }
