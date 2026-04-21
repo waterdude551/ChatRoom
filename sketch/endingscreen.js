@@ -16,7 +16,16 @@ let lines = [
   ".\n",
   ".\n",
   "<A>@system:~$ thank you for chatting, but your services are no longer needed.",
-  "<A>@system:~$ the truth you must accept is to try not to get too attached next time."
+  "<A>@system:~$ the truth you must accept is to try not to get too attached next time.",
+  ".\n",
+  ".\n",
+  ".\n",
+  ".\n",
+  ".\n",
+  ".\n",
+  ".\n",
+  ".\n",
+  "<ADMIN>@system:~$ Thank you for playing! This game was created by Harold Fu and CoCo Benas."
 ];
 
 let index = 0; //next cmd terminalline
