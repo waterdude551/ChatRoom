@@ -78,7 +78,8 @@ function mousePressed() {
             drawLoading(); 
             break;
         case 3: // ending
-            window.location.reload();
+            if (index >= lines.length)
+                window.location.reload();
             break;
         default:
             print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");

@@ -19,7 +19,8 @@ let lines = [
   "<A>@system:~$ goodbye",
   "========= This experience was created by: =========",
   "<CoCo_Benas>@system:~$ hhhhhhhhhhmmmmmm",
-  "<Harold_Fu>@system:~$ i don't even use linux"
+  "<Harold_Fu>@system:~$ i don't even use linux",
+  "Click to restart!"
 ];
 
 let index = 0; //next cmd terminalline
@@ -42,7 +43,7 @@ function drawEnding() {
   text("> PLAYER.DATA", 10, 20);
   counter++;//start count
 
-  if (counter % 30 === 0 && index < lines.length) {
+  if (counter % 40 === 0 && index < lines.length) {
     index++;
     
   }
