@@ -3,10 +3,10 @@ let WHITE;
 let BLACK;
 
 function loadFonts() {
-    font = loadFont("/assets/fonts/UbuntuMono-Regular.ttf");
-    boldFont = loadFont("/assets/fonts/UbuntuMono-Bold.ttf");
-    italicFont = loadFont("/assets/fonts/UbuntuMono-Italic.ttf");
-    boldItalicFont = loadFont("/assets/fonts/UbuntuMono-BoldItalic.ttf");
+    font = loadFont("assets/fonts/UbuntuMono-Regular.ttf");
+    boldFont = loadFont("assets/fonts/UbuntuMono-Bold.ttf");
+    italicFont = loadFont("assets/fonts/UbuntuMono-Italic.ttf");
+    boldItalicFont = loadFont("assets/fonts/UbuntuMono-BoldItalic.ttf");
     // print("loaded fonts!");
 }
 
