@@ -1,8 +1,8 @@
 let lines = [
-  "user@system:~$ rm -rf /home/user/documents",
-  "user@system:~$ rm -rf /home/user/pictures",
-  "user@system:~$ rm -rf /home/user/downloads",
-  "user@system:~$ rm -rf /home/user/music",
+  "user@system:~$ rm -rf /home/u/dat",
+  "user@system:~$ rm -rf /home/u/rsc",
+  "user@system:~$ rm -rf /home/u/log",
+  "user@system:~$ rm -rf /home/u/bin",
   "user@system:~$ sudo kill --all",
   "user@system:~$ clearing cache......",
   "user@system:~$ deleting memory.data",
@@ -15,17 +15,11 @@ let lines = [
   ".\n",
   ".\n",
   ".\n",
-  "<A>@system:~$ thank you for chatting, but your services are no longer needed.",
-  "<A>@system:~$ the truth you must accept is to try not to get too attached next time.",
-  ".\n",
-  ".\n",
-  ".\n",
-  ".\n",
-  ".\n",
-  ".\n",
-  ".\n",
-  ".\n",
-  "<ADMIN>@system:~$ Thank you for playing! This game was created by Harold Fu and CoCo Benas."
+  "<A>@system:~$ thank you for chatting",
+  "<A>@system:~$ goodbye",
+  "========= This experience was created by: =========",
+  "<CoCo_Benas>@system:~$ hhhhhhhhhhmmmmmm",
+  "<Harold_Fu>@system:~$ i don't even use linux"
 ];
 
 let index = 0; //next cmd terminalline
@@ -48,16 +42,20 @@ function drawEnding() {
   text("> PLAYER.DATA", 10, 20);
   counter++;//start count
 
-  if (counter % 50 === 0 && index < lines.length) {
+  if (counter % 30 === 0 && index < lines.length) {
     index++;
     
   }
   
   //draw lines
-    fill(255, 253, 163)
-  textSize(20);
+    textSize(20);
 
   for (let i = 0; i < index; i++) {
+    if (i > 17) {
+        fill(120);
+    } else {
+        fill(255, 253, 163)
+    }
     text(lines[i], 20, 60 + i * 25); //spacing for text reminder, 60+i changes y position of text, 25 is spacing between lines
   }
 }
