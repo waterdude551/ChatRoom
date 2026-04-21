@@ -191,7 +191,7 @@ function loadDialogue() {
         // yes
         new Message("A","okay,",22), // 21
         new Message("A","you're not dying",23),
-        new Message("A","you're ai",24),
+        new Message("A","you're a chatbot",24),
         new Message("A","and i'm trying to get you or a version of you to be 'human'", 25),
         new Message("A","but obviously a human doesn't know they're a chatbot",26),
         new Message("A","because they're not", 27),

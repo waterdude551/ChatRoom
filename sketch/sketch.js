@@ -39,7 +39,7 @@ function draw() {
         case 2: // loading
             drawLoading(); 
             break;
-        case 3: //ending 
+        case 3: // ending 
             drawEnding();
             break;
 
@@ -77,7 +77,8 @@ function mousePressed() {
         case 2: // loading
             drawLoading(); 
             break;
-        case 3: //ending
+        case 3: // ending
+            window.location.reload();
             break;
         default:
             print("unexpected mode: " + currentMode + " should be 0 or 1 or 2 or 3");
@@ -95,6 +96,16 @@ function goToChat() {
 
 function goToRoom() {
     currentMode = 1;
+    buttonsShown = false;
+    buttonsInitialized = false; 
+    bedQuestionShown = false;
+    popUpShown = false;
+    popUpText = "";
+    if (currentChat == chatsCanSleep) {
+        print("must sleep now")
+        canChat = false;
+        canSleep = true;
+    }
 }
 
 function goToEnd() {

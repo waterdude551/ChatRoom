@@ -9,26 +9,19 @@ let npcMessageQueue = [];
 let currentChat = 0; // SET TO 0 FOR PROD :)
 let canExit = false;
 
+function chatKeyPressed() {
+    if (key === 'p') {
+        npcMessageQueue[0].framesUntilSend = 0;
+    }
+}
 function initChat(chatNumber) {
-    // clear buffers, 
+    // clear buffers
+    canExit = false;
     currentChat = chatNumber;
     awaitingInput = false;
     messages = [];
     npcMessageQueue = [];
     npcMessageQueue.push(getMsg(0));
-} 
-
-
-// debug
-function chatKeyPressed() {
-    if (key === 's') {
-        print(
-            "choice1: " + choice1.message 
-            + "\nchoice2: " + choice2.message 
-            + "\nawaiting input: " + awaitingInput
-            + "\ncanExit: " + canExit
-        );
-    }
 }
 
 class Choice {
@@ -142,8 +135,8 @@ function chatMouseClicked() {
     // exit button
     if (canExit && mouseX > width-MARGIN_SIZE-32 && mouseY > MARGIN_SIZE && mouseX < width-MARGIN_SIZE && mouseY < MARGIN_SIZE + 32) {
         print("exiting chat");
-        goToRoom();
         currentChat += 1;
+        goToRoom();
     }
 }
 
@@ -159,7 +152,7 @@ function choiceClick() {
         if (choice1.npcReply) {
             npcMessageQueue.push(getMsg(choice1.npcReply)); 
         } else { // legit just for ending
-            currentMode = 3;
+            goToEnd();
         }
         awaitingInput = false;
     } else if (choice2.isHoveredOver) {
@@ -169,7 +162,7 @@ function choiceClick() {
         if (choice2.npcReply) {
             npcMessageQueue.push(getMsg(choice2.npcReply));
         } else {
-            currentMode = 3; // this could be written better but :P
+            goToEnd(); // this could be written better but :P
         }
         awaitingInput = false;
     }
@@ -253,11 +246,6 @@ function drawChat() {
     textFont(font);
     textSize(FONT_SIZE);
 
-    // if (!awaitingInput) {
-    //     awaitingInput = true;
-    //     c1 = new Choice("(Action 1)", "Message message message 1.");
-    //     c2 = new Choice("(Action 2)", "Message message message 2.");
-    // }
     displayMessages();
     // initiate chat
     if (messages.length == 0 && npcMessageQueue.length == 0 && !awaitingInput) {

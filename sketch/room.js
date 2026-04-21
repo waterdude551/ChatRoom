@@ -1,8 +1,8 @@
-let bed, bookshelf, desk, room_outline
-let sprite
-let spriteImg
-let door
-let escapeDoor
+let bed, bookshelf, desk, room_outline;
+let sprite;
+let spriteImg;
+let door;
+let escapeDoor;
 let speed = 3;
 let roomFont;
 
@@ -11,12 +11,9 @@ let popUpText = "";
 
 let yesButton;
 let noButton;
+let logOnButton;
+let cancelLogOnButton;
 let buttonsShown = false;
-let buttonsInitialized = false;
-
-let bedQuestionShown = false;
-let popUpShown = false;
-
 
 //for typewriter effect
 let typeTextShown = "";
@@ -32,10 +29,14 @@ let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY
 
 let deskMinX = 70, deskMaxX = 330, deskMinY = 90, deskMaxY = 370
 
-let canSleep = false; //can only sleep after chatting is done for the day
-let days; 
+let canSleep = false; // can only sleep after chatting is done for the day
+let canChat = true; // only false if you have to sleep
+let chatsCanSleep = 2; // if it's a currentChat in here, then you're supposed to sleep before the numbered chat. i just realized it's only chat 2. u only sleep once
 
 let justHidButtons = false;
+let leftButtonX = 340;
+let buttonY = 670;
+let rightButtonX = 600;
 
 
 
@@ -52,7 +53,65 @@ function loadRoom(){
     sprite = new Sprite(400,400); //SPRITE PRE LOADS HERE!
    
     cursorImg = loadImage('images/LMB.png');
+    loadRoomButtons();
 }
+
+function loadRoomButtons() {
+    yesButton = createButton("> Sleep");
+    noButton = createButton("> Look around");
+
+    yesButton.position(leftButtonX, buttonY);
+    noButton.position(rightButtonX, buttonY);
+
+    yesButton.mousePressed(() => {
+
+        if(canSleep){
+            sleepDone(); // TODO : fade to black, advance to allow next chat
+            clearOldPopUp();
+            popUpText = "> You had a good night's sleep";
+            hideButtons();
+        }
+        else {
+            clearOldPopUp();
+            popUpText = "> You still have chats to finish.";
+            hideButtons();
+        }
+    });
+
+    noButton.mousePressed(() => {
+        popUpText = "";
+        hideButtons();
+    });
+
+    yesButton.hide();
+    noButton.hide();
+
+    // more buttonsss
+    logOnButton = createButton("> Log on");
+    cancelLogOnButton = createButton("> Cancel");
+    
+    logOnButton.position(leftButtonX, buttonY);
+    cancelLogOnButton.position(rightButtonX, buttonY);
+
+    logOnButton.mousePressed(() => {
+        hideButtons();
+        if (canChat) {
+            goToChat();
+        } else {
+            clearOldPopUp();
+            popUpText = "> No more chats for today.";
+        }
+    });
+
+    cancelLogOnButton.mousePressed(() => {
+        popUpText = "";
+        hideButtons();
+    });
+
+    logOnButton.hide();
+    cancelLogOnButton.hide();
+}
+
 function drawRoom(){
     
     background(255);
@@ -67,42 +126,12 @@ function drawRoom(){
     
        
     
-   //for sleep to trigger end scr
-    if (!buttonsInitialized) {
-        yesButton = createButton("> Sleep");
-        noButton = createButton("> Look around");
-
-        yesButton.position(340, 650);
-        noButton.position(600, 650);
-
-        yesButton.mousePressed(() => {
-
-            if(canSleep){
-                currentMode = 3; // TODO : fade to black, advance to allow next chat
-                hideButtons();
-            }
-            else {
-                clearOldPopUp();
-                popUpText = "> You still have chats to finish.";
-                hideButtons();
-            }
-        });
-
-        noButton.mousePressed(() => {
-            popUpText = "";
-            hideButtons();
-        });
-
-        yesButton.hide();
-        noButton.hide();
-
-        buttonsInitialized = true;
-    }
-
     hoveredObject = getHoveredObject();
+    // text step
     if (popUpText != "") { //if not null show popup
         fill(WHITE);
         rect(220, 540, 600, 180);
+        // type effect
         if (typeIndex < popUpText.length) {
             typeCounter++;
 
@@ -111,10 +140,21 @@ function drawRoom(){
                 typeIndex++;
             }
         }
-        if (hoveredObject === "bed" && typeIndex >= popUpText.length && !buttonsShown) { //would this indicate popup is here, how to clear it 
-            //set popupshown here to true, then how to clear this rectangle when reminder of still needing to chat 
-            showButtons();
-            buttonsShown = true;
+        // button show
+        // hardcode :(
+        if (hoveredObject === "bed" 
+            && typeIndex >= popUpText.length 
+            && !buttonsShown 
+            && popUpText != "> You still have chats to finish."
+            && canSleep) {
+            showBedButtons();
+        }
+        if (hoveredObject === "desk" 
+            && typeIndex >= popUpText.length 
+            && !buttonsShown 
+            && popUpText != "> No more chats for today." 
+            && canChat) {
+            showDeskButtons();
         }
         fill(BLACK);
         textSize(30);
@@ -185,8 +225,8 @@ function roomMousePressed() {
     }
     if(popUpText != "") {
         // if a box is already up
-        if (hoveredObject == "bed") {
-            return; // and it's the bed, delegate to buttons
+        if (buttonsShown) {
+            return; // delegate to buttons
         }
         if (popUpText == typeTextShown) {
             // and it's done, remove the box
@@ -213,15 +253,17 @@ function roomMousePressed() {
             break;
         case ("bed"):
             popUpText = getPopUpText();
-            bedQuestionShown = true;
             typeTextShown = "";
             typeIndex = 0;
             typeCounter = 0;
-            buttonsShown = false;
             hideButtons();
             break;
         case ("desk"):
-            popUpText = getPopUpText();
+            if (!canChat) {
+                popUpText = "> No messages right now.";
+            } else {
+                popUpText = getPopUpText();
+            }
             typeTextShown = "";
             typeIndex = 0;
             typeCounter = 0;
@@ -232,7 +274,6 @@ function roomMousePressed() {
             typeCounter = 0;
             popUpText = ""; //close popup
     }
-
 }
 
 
@@ -267,16 +308,24 @@ function drawMouseIfHover(){
     }
 }
     
- 
+function showDeskButtons() {
+    logOnButton.show();
+    cancelLogOnButton.show();
+    buttonsShown = true;
+}
 
-function showButtons() {
+function showBedButtons() {
     yesButton.show();
     noButton.show();
+    buttonsShown = true;
 }
 
 function hideButtons() {
     yesButton.hide();
     noButton.hide();
+    logOnButton.hide();
+    cancelLogOnButton.hide();
+    buttonsShown = false;
     justHidButtons = true;
 }
 
@@ -286,4 +335,9 @@ function clearOldPopUp() {
     typeTextShown = "";
     typeIndex = 0;
     typeCounter = 0;
+}
+
+function sleepDone() {
+    canSleep = false;
+    canChat = true;
 }
