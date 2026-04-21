@@ -6,7 +6,8 @@ let logo;
 
 function preload(){
     biosfont = loadFont('assets/fonts/bios_font.otf')
-    logo = loadImage('images/fakemotherboard.png')
+    logo = loadImage('images/logo.png')
+    //logo = loadImage('images/fakemotherboard.png')
 }
 
 function setup() {
@@ -25,7 +26,6 @@ function drawLoading() {
     
     background(0); 
     image(logo,0,0);
-  // text( `x:  ${mouseX} y: ${mouseY}`, 60,60); 
 
     
     //have typing effect load the bios info
