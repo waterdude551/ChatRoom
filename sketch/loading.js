@@ -5,7 +5,7 @@ let logo;
 //this is for loading screen stuff
 
 function loadLoading(){
-    logo = loadImage('images/fakemotherboard.png')
+    logo = loadImage('images/crLogo.png')
 }
 
 
@@ -18,7 +18,7 @@ function drawLoading() {
     
     
     background(0); 
-    image(logo,0,0);
+    image(logo,0,0,543,178);
   // text( `x:  ${mouseX} y: ${mouseY}`, 60,60); 
 
     
