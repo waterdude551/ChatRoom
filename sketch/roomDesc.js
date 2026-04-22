@@ -14,16 +14,16 @@ function loadDescriptions() {
         "DEBUG - Bookshelf",
         "DEBUG - Desk" 
     ); 
-    //1.1
+    //1.1 look around
     roomDescs[1] = new roomDesc(
         "> It's your bed. You didn't get up from it, so maybe you were sleeping in your chair.", 
         "> It's a bookshelf filled with books.",
-        "> It's the computer you were chatting on." //how to implement the follow up prompt to log back in, the "now that youve looked around" desc
+        "> It's the computer you were chatting on."
     ); 
-    //1.2
+    //1.2 
     roomDescs[2] = new roomDesc(
-        "> It's your bed. Go to sleep?", 
-        "> None of these books seem interesting. You're tired, anyways.", 
+        "> You're already up...", 
+        "> None of these books seem interesting right now.", 
         "> There's someone in the chatroom!"
     )
     //2.1

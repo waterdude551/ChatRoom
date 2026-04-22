@@ -251,7 +251,11 @@ function roomMousePressed() {
             typeCounter = 0;
             break;
         case ("bed"):
-            popUpText = getPopUpText();
+            if (canSleep) {
+                popUpText = "> It's your bed. Go to sleep?";
+            } else {
+                popUpText = getPopUpText();
+            }
             typeTextShown = "";
             typeIndex = 0;
             typeCounter = 0;
