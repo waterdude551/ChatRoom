@@ -35,15 +35,8 @@ function drawLoading() {
     totalText = biosText + startText;
     textSize(27)
     text(totalText, 18,190, 1024,768)
+  
     
-    //figure out typewriter effect later after loading scr done
-    /*
-    text(totalText.substring(0, index + 1),15, 190, 1024,768);
-    index++;
-    if(pos > totalText.length + speed) {  //text runs as each letter is loaded
-        index = 0;
-    }
-        */
     
 
 }
