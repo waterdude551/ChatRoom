@@ -1,4 +1,3 @@
-let biosfont;
 let logo;
 
 
