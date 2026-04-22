@@ -124,7 +124,7 @@ function drawRoom(){
     }
     sprite.display();
     
-       
+    drawMouseIfHover();
     
     hoveredObject = getHoveredObject();
     // text step
@@ -165,7 +165,6 @@ function drawRoom(){
     if (justHidButtons) {
         justHidButtons = false;
     }
-    drawMouseIfHover();
 }
 
 

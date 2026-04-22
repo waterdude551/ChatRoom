@@ -1,4 +1,4 @@
-let FRAMES_BETWEEN_CHARS = 5;
+let FRAMES_BETWEEN_CHARS = 3;
 let MARGIN_SIZE = 40;
 let FONT_SIZE = 28;
 let choice1;
@@ -55,7 +55,7 @@ class Prompt {
         this.y;
         this.width = width - 2 * MARGIN_SIZE;
         this.height;
-        this.framesUntilSend = message.length * FRAMES_BETWEEN_CHARS + 5;
+        this.framesUntilSend = message.length * FRAMES_BETWEEN_CHARS + 10;
         this.c1 = choice1Index;
         this.c2 = choice2Index;
     }
@@ -71,7 +71,7 @@ class Message {
         this.y;
         this.width = width - 2 * MARGIN_SIZE;
         this.height;
-        this.framesUntilSend = message.length * FRAMES_BETWEEN_CHARS;
+        this.framesUntilSend = message.length * FRAMES_BETWEEN_CHARS + 10;
         this.next = next;
     }
 }
