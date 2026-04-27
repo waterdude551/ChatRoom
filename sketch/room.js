@@ -38,6 +38,9 @@ let leftButtonX = 340;
 let buttonY = 670;
 let rightButtonX = 600;
 
+let sleeping = false;
+let sleepingProgress = 0.0; // to 1.0
+let sleepingDuration = 3.0;
 
 
 //few chats -> bed then new day with more chatting
@@ -66,7 +69,7 @@ function loadRoomButtons() {
     yesButton.mousePressed(() => {
 
         if(canSleep){
-            sleepDone(); // TODO : fade to black, advance to allow next chat
+            sleeping = true;
             clearOldPopUp();
             popUpText = "> You had a good night's sleep";
             hideButtons();
@@ -117,13 +120,35 @@ function drawRoom(){
     background(255);
     
  
-        
+    
     image(roombg,0,0)
+
+
+
     if (popUpText == "") { 
         sprite.move(); // only allow movement outside text
     }
     sprite.display();
     
+    if (sleeping) {
+        if (sleepingProgress >= 2) {
+            print("done sleeping")
+            sleeping = false
+            sleepDone();
+            sleepingProgress = 0;
+        }
+        let fadeAlpha;
+        if (sleepingProgress < 1) {
+            fadeAlpha = lerp(0,255,sleepingProgress);
+        } else {
+            fadeAlpha = lerp(0,255,1-(sleepingProgress-1));
+        }
+        fill(0, 0, 0, fadeAlpha);
+        rect(0,0,width,height);
+        sleepingProgress += 1/60 / sleepingDuration;
+        return;
+    }
+
     drawMouseIfHover();
     
     hoveredObject = getHoveredObject();
@@ -342,5 +367,6 @@ function clearOldPopUp() {
 
 function sleepDone() {
     canSleep = false;
+    sleeping = false;
     canChat = true;
 }
