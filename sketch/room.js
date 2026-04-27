@@ -58,9 +58,19 @@ function loadRoom(){
 }
 
 function loadRoomButtons() {
-    yesButton = createButton("> Sleep");
-    noButton = createButton("> Look around");
 
+    yesButton = createButton("> Sleep");
+    yesButton.style("font-family", "Ubuntu Mono");
+    yesButton.style("background-color", color(255,255,255));
+    yesButton.style("font-weight", "bold");
+    yesButton.style("font-size", "20px");
+    noButton = createButton("> Look around");
+    noButton.style("font-family", "Ubuntu Mono");
+    noButton.style("background-color", color(255,255,255));
+    noButton.style("font-weight", "bold");
+    noButton.style("font-size", "20px");
+
+    
     yesButton.position(leftButtonX, buttonY);
     noButton.position(rightButtonX, buttonY);
 
@@ -90,6 +100,17 @@ function loadRoomButtons() {
     // more buttonsss
     logOnButton = createButton("> Log on");
     cancelLogOnButton = createButton("> Cancel");
+
+    //no more boring html button
+    logOnButton.style("font-family", "Ubuntu Mono"); 
+    logOnButton.style("background-color", color(255,255,255));
+    logOnButton.style("font-weight", "bold");
+    logOnButton.style("font-size", "20px");
+    cancelLogOnButton.style("font-family", "Ubuntu Mono");
+    cancelLogOnButton.style("font-weight", "bold");
+    cancelLogOnButton.style("background-color", color(255,255,255))
+    cancelLogOnButton.style("font-size", "20px");
+
     
     logOnButton.position(leftButtonX, buttonY);
     cancelLogOnButton.position(rightButtonX, buttonY);
