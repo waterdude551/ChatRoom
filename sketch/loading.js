@@ -6,8 +6,7 @@ counter = 0;
 
 let index2 = 0;
 let counter2 = 0;
-   let grey;
-   let white;
+
 
 
 
@@ -20,7 +19,8 @@ function loadLoading(){
 
 function drawLoading() {
   
-    
+    let grey = color(128,128,128);
+    let white = color(255,255,255);
     
     background(0); 
     image(logo,0,0,543,178);
@@ -62,7 +62,7 @@ function drawLoading() {
     if (i > lines.length) {
         fill(0); 
     } else {
-        fill(grey) //could i color the f10 and f2 in this loop..
+        fill(grey) 
     }
     text(lines[i], 70, 250 + i * 40); //spacing for text reminder, 60+i changes y position of text, 25 is spacing between lines
   }
@@ -81,7 +81,7 @@ if(counter2 % 50 === 0 && index2 < startPrompt.length) {
         fill(0);
     } else {
            colorText(70, 250 + (lines.length + j) * 40, startPrompt);
-           break; //does it once
+           break; 
         }
     }
 }
