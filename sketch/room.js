@@ -150,6 +150,8 @@ function drawRoom(){
 
     if (popUpText == "") { 
         sprite.move(); // only allow movement outside text
+    } else {
+        sprite.currFrame = 1;
     }
     sprite.display();
     
@@ -283,7 +285,7 @@ class Sprite {
 
 
 function inRange(value, min, max) {
-    if(value >= min && value <= max) {
+    if(value+108 >= min && value <= max) {
         return true;
     }
     return false;
