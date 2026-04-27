@@ -5,6 +5,7 @@ let door;
 let escapeDoor;
 let speed = 3;
 let roomFont;
+let glow;
 
 let hoveredObject = null;
 let popUpText = "";
@@ -139,12 +140,16 @@ function drawRoom(){
     background(255);
     
  
-    
+   
     image(roombg,0,0)
+    
     if (popUpText == "") { 
         sprite.move(); // only allow movement outside text
     }
+    
     sprite.display();
+    image(glow,0,0);
+
     
     drawMouseIfHover();
     
