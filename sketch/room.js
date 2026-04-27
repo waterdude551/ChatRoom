@@ -39,6 +39,9 @@ let leftButtonX = 340;
 let buttonY = 670;
 let rightButtonX = 600;
 
+let sleeping = false;
+let sleepingProgress = 0.0; // to 1.0
+let sleepingDuration = 3.0;
 
 
 //few chats -> bed then new day with more chatting
@@ -49,6 +52,7 @@ function loadRoom(){
     // loadImage('images/room_assets/door.png');
 
     spriteImg = loadImage('images/room_assets/sprite.png');
+    spritesheet = loadImage('images/room_assets/spritesheet.png');
     roombg = loadImage('images/room_assets/newroombg.png');
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf');
     sprite = new Sprite(400,400); //SPRITE PRE LOADS HERE!
@@ -78,7 +82,7 @@ function loadRoomButtons() {
     yesButton.mousePressed(() => {
 
         if(canSleep){
-            sleepDone(); // TODO : fade to black, advance to allow next chat
+            sleeping = true;
             clearOldPopUp();
             popUpText = "> You had a good night's sleep";
             hideButtons();
@@ -145,12 +149,33 @@ function drawRoom(){
     
     if (popUpText == "") { 
         sprite.move(); // only allow movement outside text
+    } else {
+        sprite.currFrame = 1;
     }
     
     sprite.display();
     image(glow,0,0);
 
     
+    if (sleeping) {
+        if (sleepingProgress >= 2) {
+            print("done sleeping")
+            sleeping = false
+            sleepDone();
+            sleepingProgress = 0;
+        }
+        let fadeAlpha;
+        if (sleepingProgress < 1) {
+            fadeAlpha = lerp(0,255,sleepingProgress);
+        } else {
+            fadeAlpha = lerp(0,255,1-(sleepingProgress-1));
+        }
+        fill(0, 0, 0, fadeAlpha);
+        rect(0,0,width,height);
+        sleepingProgress += 1/60 / sleepingDuration;
+        return;
+    }
+
     drawMouseIfHover();
     
     hoveredObject = getHoveredObject();
@@ -194,49 +219,75 @@ function drawRoom(){
     }
 }
 
-
-
-
+let SPRITE_FRAMES_PER_FRAME = 20;
 class Sprite { 
     constructor(x,y) {
         this.x = x;
         this.y = y;
+        this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
+        this.currFrame = 1;
+        this.direction = 0; // 0123 = down, left, right, up
+        this.moving = false;
+        this.img = spriteImg;
     }
 
     move(){
+        this.moving = false;
+
         if(keyIsDown(65)) {
             if(this.x > 0) {
             this.x -= speed 
+            this.direction = 1
+            this.moving = true;
             }
         }
-
         if(keyIsDown(68)) {
             if(this.x < width - spriteImg.width) {
             this.x += speed
+            this.direction = 2
+            this.moving = true;
             }
         }
-        
         if(keyIsDown(87)) {  
             if(this.y > 0){
             this.y -= speed
+            this.direction = 3
+            this.moving = true;
             }
         }
         if(keyIsDown(83)) { 
             if(this.y < height - spriteImg.height) {
             this.y += speed
+            this.direction = 0
+            this.moving = true;
             }
+        }
+        
+        if (this.moving) {
+            this.animate();
+        } else {
+            this.currFrame = 1;
+            this.framesUntilAnim = 0;
+        }
+    }
+
+    animate() {
+        this.framesUntilAnim--;
+        if (this.framesUntilAnim <= 0) {
+            this.currFrame = (this.currFrame + 1) % 3
+            this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
         }
     }
 
     display(){
-        image(spriteImg, this.x, this.y)
+        image(spritesheet, this.x, this.y, 108, 192, this.currFrame * 108, this.direction * 192, 108, 192);
     }
 }
 
 
 
 function inRange(value, min, max) {
-    if(value >= min && value <= max) {
+    if(value+108 >= min && value <= max) {
         return true;
     }
     return false;
@@ -369,5 +420,6 @@ function clearOldPopUp() {
 
 function sleepDone() {
     canSleep = false;
+    sleeping = false;
     canChat = true;
 }
