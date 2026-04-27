@@ -241,7 +241,7 @@ class Sprite {
             this.animate();
         } else {
             this.currFrame = 1;
-            this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
+            this.framesUntilAnim = 0;
         }
     }
 
