@@ -117,8 +117,8 @@ function loadRoomButtons() {
     cancelLogOnButton.style("font-size", "20px");
 
     
-    logOnButton.position(leftButtonX, buttonY);
-    cancelLogOnButton.position(rightButtonX, buttonY);
+    logOnButton.position(leftButtonX+(windowWidth - width) / 2, buttonY);
+    cancelLogOnButton.position(rightButtonX+(windowWidth - width) / 2, buttonY);
 
     logOnButton.mousePressed(() => {
         hideButtons();

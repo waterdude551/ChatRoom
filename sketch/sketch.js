@@ -13,7 +13,10 @@ function loadFonts() {
 function setup() {
     WHITE = color(204);
     BLACK = color(10);
-    createCanvas(1024, 768);
+    var cnv = createCanvas(1024, 768);
+    var x = (windowWidth - width) / 2;
+    var y = (windowHeight - height) / 2;
+    cnv.position(x, y);
     loadLoading();
     loadDialogue();
     loadDescriptions();
