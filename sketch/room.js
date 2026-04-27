@@ -25,7 +25,7 @@ let typeSpeed = 3;
 
 let bedMinX = 570, bedMaxX = 950, bedMinY = 65, bedMaxY = 320
 
-let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
+let bookshelfMinX = 400, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
 
 let deskMinX = 70, deskMaxX = 330, deskMinY = 90, deskMaxY = 370
 
@@ -48,9 +48,10 @@ function loadRoom(){
     // loadImage('images/room_assets/door.png');
 
     spriteImg = loadImage('images/room_assets/sprite.png');
-    roombg = loadImage('images/room_assets/roombg.png');
+    roombg = loadImage('images/room_assets/newroombg.png');
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf');
     sprite = new Sprite(400,400); //SPRITE PRE LOADS HERE!
+    glow = loadImage('images/room_assets/pcglow.png');
    
     cursorImg = loadImage('images/LMB.png');
     loadRoomButtons();
@@ -117,7 +118,7 @@ function drawRoom(){
     background(255);
     
  
-        
+    
     image(roombg,0,0)
     if (popUpText == "") { 
         sprite.move(); // only allow movement outside text
