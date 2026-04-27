@@ -53,7 +53,7 @@ function drawLoading() {
 
       counter++;//start count to begin text load
 
-  if (counter % 50 === 0 && index < lines.length) {
+  if (counter % 70 === 0 && index < lines.length) {
     index++;
   }
 

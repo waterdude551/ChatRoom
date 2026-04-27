@@ -26,7 +26,7 @@ let typeSpeed = 3;
 
 let bedMinX = 570, bedMaxX = 950, bedMinY = 65, bedMaxY = 320
 
-let bookshelfMinX = 400, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
+let bookshelfMinX = 600, bookshelfMaxX = 970, bookshelfMinY = 510, bookshelfMaxY = 750
 
 let deskMinX = 70, deskMaxX = 330, deskMinY = 90, deskMaxY = 370
 

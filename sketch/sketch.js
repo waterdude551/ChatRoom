@@ -11,6 +11,8 @@ function loadFonts() {
 }
 
 function setup() {
+    
+
     WHITE = color(204);
     BLACK = color(10);
     createCanvas(1024, 768);
