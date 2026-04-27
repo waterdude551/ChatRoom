@@ -1,6 +1,15 @@
 let biosfont;
 let logo;
 
+index = 0;
+counter = 0;
+
+let index2 = 0;
+let counter2 = 0;
+   let grey;
+   let white;
+
+
 
 //this is for loading screen stuff
 
@@ -12,38 +21,74 @@ function loadLoading(){
 function drawLoading() {
   
     
-    let index = 0;
-    let speed = 5;  
-      
-    
     
     background(0); 
     image(logo,0,0,543,178);
   // text( `x:  ${mouseX} y: ${mouseY}`, 60,60); 
+    let lines = [
+        "Award Modular BIOS v45 PG, An Energy Star Ally",
+        "Copyright (C) 2026",
+        "CHATROOM OS P5 ACPI BIOS Beta",
+        "80372782 CPU at 80MHz",
+        "Award Plug and Play BIOS Extension v1.0a",
+        "Serial Number 01010011 01001111 01010011",
+        "System Date 0/1/2222",
+        "Parsing chats...\n",
+        "Placing furniture....\n",
+        " \n",
+        " \n"
+    ]
 
+    let loadingBar = ("█ "); //i will get to this later 
+
+   let startPrompt = [
+        ["Press ", grey],
+        ["F10 ", white],
+        ["to enter or ", grey],
+        ["F2 ", white],
+        ["to exit", grey]];
+        
+    textSize(25);
     
-    //have typing effect load the bios info
-    fill(255)
-    textFont(boldFont); 
-    biosText = "Award Modular BIOS v45 PG, An Energy Star Ally\nCopywrite (C)2026\n\nTEMPNAME P5 ACPI BIOS Beta\n80372782 CPU at 80MHz\nAward Plug and Play BIOS Extension v1.0a\nSerial Number 00011837\nSystem Date 0/1/2222\n\n";
-    startText = "Press F10 to enter\nPress F2 to exit";
-    totalText = biosText + startText;
-    textSize(27)
-    text(totalText, 18,200, 1024,768)
 
+      counter++;//start count to begin text load
 
-    
-    //figure out typewriter effect later after loading scr done
-    /*
-    text(totalText.substring(0, index + 1),15, 190, 1024,768);
+  if (counter % 50 === 0 && index < lines.length) {
     index++;
-    if(pos > totalText.length + speed) {  //text runs as each letter is loaded
-        index = 0;
-    }
-        */
-    
+  }
 
+  //THIS LOOP IS FOR MAIN BIOS TEXT
+  for (let i = 0; i < index; i++) {
+    if (i > lines.length) {
+        fill(0); 
+    } else {
+        fill(grey) //could i color the f10 and f2 in this loop..
+    }
+    text(lines[i], 70, 250 + i * 40); //spacing for text reminder, 60+i changes y position of text, 25 is spacing between lines
+  }
+
+
+    if(index >= lines.length) {
+
+counter2++;//old loop done start this one to color
+if(counter2 % 50 === 0 && index2 < startPrompt.length) {
+    index2++;
+  }
+  //THIS LOOP IS FOR START TEXT!
+
+  for(let j = 0; j < index2; j++) {
+    if(j > startPrompt.length) {
+        fill(0);
+    } else {
+           colorText(70, 250 + (lines.length + j) * 40, startPrompt);
+           break; //does it once
+        }
+    }
 }
+}
+
+
+
 
 function loadingKeyPressed(){
     print(key);
@@ -52,7 +97,15 @@ function loadingKeyPressed(){
     }
 }
 
-
+function colorText(x, y, input) {
+    let currentX = x;
+    for(let i = 0; i < input.length; i++) {
+        let part = input[i];
+        fill(part[1]);
+        text(part[0], currentX, y);
+        currentX += textWidth(part[0]);
+    }
+}
 
 
 
