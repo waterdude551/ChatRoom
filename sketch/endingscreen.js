@@ -20,7 +20,8 @@ let lines = [
   "========= This experience was created by: =========",
   "<CoCo_Benas>@system:~$ hhhhhhhhhhmmmmmm",
   "<Harold_Fu>@system:~$ i don't even use linux",
-  "Click to restart!"
+  "Click to restart!",
+  "While waiting for a user to finish typing, you can press 'P' to skip."
 ];
 
 let index = 0; //next cmd terminalline
@@ -52,6 +53,11 @@ function drawEnding() {
     textSize(20);
 
   for (let i = 0; i < index; i++) {
+    if (i > 20) {
+      textFont(italicFont);
+    } else {
+      textFont(font);
+    }
     if (i > 17) {
         fill(120);
     } else {
