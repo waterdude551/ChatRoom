@@ -51,6 +51,7 @@ function loadRoom(){
     // loadImage('images/room_assets/door.png');
 
     spriteImg = loadImage('images/room_assets/sprite.png');
+    spritesheet = loadImage('images/room_assets/spritesheet.png')
     roombg = loadImage('images/room_assets/roombg.png');
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf');
     sprite = new Sprite(400,400); //SPRITE PRE LOADS HERE!
@@ -192,42 +193,68 @@ function drawRoom(){
     }
 }
 
-
-
-
+let SPRITE_FRAMES_PER_FRAME = 20;
 class Sprite { 
     constructor(x,y) {
         this.x = x;
         this.y = y;
+        this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
+        this.currFrame = 1;
+        this.direction = 0; // 0123 = down, left, right, up
+        this.moving = false;
+        this.img = spriteImg;
     }
 
     move(){
+        this.moving = false;
+
         if(keyIsDown(65)) {
             if(this.x > 0) {
             this.x -= speed 
+            this.direction = 1
+            this.moving = true;
             }
         }
-
         if(keyIsDown(68)) {
             if(this.x < width - spriteImg.width) {
             this.x += speed
+            this.direction = 2
+            this.moving = true;
             }
         }
-        
         if(keyIsDown(87)) {  
             if(this.y > 0){
             this.y -= speed
+            this.direction = 3
+            this.moving = true;
             }
         }
         if(keyIsDown(83)) { 
             if(this.y < height - spriteImg.height) {
             this.y += speed
+            this.direction = 0
+            this.moving = true;
             }
+        }
+        
+        if (this.moving) {
+            this.animate();
+        } else {
+            this.currFrame = 1;
+            this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
+        }
+    }
+
+    animate() {
+        this.framesUntilAnim--;
+        if (this.framesUntilAnim <= 0) {
+            this.currFrame = (this.currFrame + 1) % 3
+            this.framesUntilAnim = SPRITE_FRAMES_PER_FRAME;
         }
     }
 
     display(){
-        image(spriteImg, this.x, this.y)
+        image(spritesheet, this.x, this.y, 108, 192, this.currFrame * 108, this.direction * 192, 108, 192);
     }
 }
 
