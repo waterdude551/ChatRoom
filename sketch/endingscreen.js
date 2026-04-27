@@ -24,7 +24,7 @@ let lines = [
   "While waiting for a user to finish typing, you can press 'P' to skip."
 ];
 
-let index = 0; //next cmd terminalline
+let index1 = 0; //next cmd terminalline
 let counter = 0;
 
 function loadEnding() {
@@ -44,15 +44,15 @@ function drawEnding() {
   text("> PLAYER.DATA", 10, 20);
   counter++;//start count
 
-  if (counter % 40 === 0 && index < lines.length) {
-    index++;
+  if (counter % 40 === 0 && index1 < lines.length) {
+    index1++;
     
   }
   
   //draw lines
     textSize(20);
 
-  for (let i = 0; i < index; i++) {
+  for (let i = 0; i < index1; i++) {
     if (i > 20) {
       textFont(italicFont);
     } else {
