@@ -14,6 +14,8 @@ let counter2 = 0;
 
 function loadLoading(){
     logo = loadImage('images/crLogo.png')
+    
+
 }
 
 

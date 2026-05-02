@@ -2,12 +2,32 @@ let currentMode; // 0 for chat, 1 for room, 2 for start, 3 for end
 let WHITE;
 let BLACK;
 
+let startupSound;
+let roomSound
+let endingSound;
+let chatAmbience;
+
 function loadFonts() {
     font = loadFont("assets/fonts/UbuntuMono-Regular.ttf");
     boldFont = loadFont("assets/fonts/UbuntuMono-Bold.ttf");
     italicFont = loadFont("assets/fonts/UbuntuMono-Italic.ttf");
     boldItalicFont = loadFont("assets/fonts/UbuntuMono-BoldItalic.ttf");
+
     // print("loaded fonts!");
+}
+
+function preload() {
+    startupSound = loadSound('assets/sound/startupnoise.mp3');  
+    startupSound.setVolume(.4); // Adjust the volume as needed
+
+    roomSound = loadSound('assets/sound/roomnoise.mp3');
+    roomSound.setVolume(1.3);
+    
+    endingSound = loadSound('assets/sound/endingnoise.mp3');
+    endingSound.setVolume(.2);
+
+    chatAmbience = loadSound('assets/sound/chatnoise.wav');
+
 }
 
 function setup() {
@@ -24,28 +44,54 @@ function setup() {
     loadDescriptions();
     loadRoom();
     loadFonts();
+
     
     loadEnding();
     frameRate(60);
     currentMode = 2; // CHANGE TO 2 FOR PROD :)
     // prints show up in Inspect Element -> Console
     print("hello world!");
+
 }
 
 
 function draw() {
     switch (currentMode) {
         case 0: // chat
+        if(chatAmbience.isLoaded() && !chatAmbience.isPlaying()){
+            roomSound.stop();
+            endingSound.stop();
+            startupSound.stop();
+            chatAmbience.loop(); //i def couldve made a function for this now that i look at it again ooopps
+            }
             drawChat();
             break;
         case 1: // room
             drawRoom();
+            if(roomSound.isLoaded() && !roomSound.isPlaying()){
+                chatAmbience.stop();
+                endingSound.stop();
+                startupSound.stop();
+                roomSound.loop();
+            }
             break;
         case 2: // loading
             drawLoading(); 
+            if (startupSound.isLoaded() && !startupSound.isPlaying()) {
+                chatAmbience.stop();
+                endingSound.stop();
+                roomSound.stop(); 
+                startupSound.loop();// play once
+            }
             break;
         case 3: // ending 
             drawEnding();
+            if (endingSound.isLoaded() && !endingSound.isPlaying()) {
+                chatAmbience.stop();
+                startupSound.stop();
+                roomSound.stop();
+                endingSound.loop(); 
+            }
             break;
 
         default:
