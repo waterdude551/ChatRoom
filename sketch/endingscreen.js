@@ -18,7 +18,7 @@ let lines = [
   "<A>@system:~$ thank you for chatting",
   "<A>@system:~$ goodbye",
   "========= This experience was created by: =========",
-  "<CoCo_Benas>@system:~$ hhhhhhhhhhmmmmmm",
+  "<CoCo_Benas>@system:~$ i am now really good at indenting code :smile:",
   "<Harold_Fu>@system:~$ i don't even use linux",
   "Click to restart!",
   "While waiting for a user to finish typing, you can press 'P' to skip."
