@@ -46,9 +46,7 @@ function drawLoading() {
    let startPrompt = [
         ["Press ", grey],
         ["F10 ", white],
-        ["to enter or ", grey],
-        ["F2 ", white],
-        ["to exit", grey]];
+        ["to enter. ", grey]]
         
     textSize(25);
     
