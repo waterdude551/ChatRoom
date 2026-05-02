@@ -18,15 +18,16 @@ function loadFonts() {
 
 function preload() {
     startupSound = loadSound('assets/sound/startupnoise.mp3');  
-    startupSound.setVolume(.4); // Adjust the volume as needed
+    startupSound.setVolume(.2); // Adjust the volume as needed
 
     roomSound = loadSound('assets/sound/roomnoise.mp3');
-    roomSound.setVolume(1.3);
+    roomSound.setVolume(.65);
     
     endingSound = loadSound('assets/sound/endingnoise.mp3');
-    endingSound.setVolume(.2);
+    endingSound.setVolume(.1);
 
     chatAmbience = loadSound('assets/sound/chatnoise.wav');
+    chatAmbience.setVolume(.5);
 
 }
 
@@ -58,11 +59,11 @@ function setup() {
 function draw() {
     switch (currentMode) {
         case 0: // chat
-        if(chatAmbience.isLoaded() && !chatAmbience.isPlaying()){
-            roomSound.stop();
-            endingSound.stop();
-            startupSound.stop();
-            chatAmbience.loop(); //i def couldve made a function for this now that i look at it again ooopps
+            if(chatAmbience.isLoaded() && !chatAmbience.isPlaying()){
+                roomSound.stop();
+                endingSound.stop();
+                startupSound.stop();
+                chatAmbience.loop(); //i def couldve made a function for this now that i look at it again ooopps
             }
             drawChat();
             break;
@@ -129,7 +130,7 @@ function mousePressed() {
             drawLoading(); 
             break;
         case 3: // ending
-            if (index >= lines.length)
+            if (index1 >= lines.length)
                 window.location.reload();
             break;
         default:
