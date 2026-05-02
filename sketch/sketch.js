@@ -6,6 +6,7 @@ let startupSound;
 let roomSound
 let endingSound;
 let chatAmbience;
+let keyboardClicks;
 
 function loadFonts() {
     font = loadFont("assets/fonts/UbuntuMono-Regular.ttf");
@@ -29,6 +30,15 @@ function preload() {
     chatAmbience = loadSound('assets/sound/chatnoise.wav');
     chatAmbience.setVolume(.5);
 
+    keyboardClicks = [
+        loadSound('assets/sound/keyboard_clicks/click1.wav'),
+        loadSound('assets/sound/keyboard_clicks/click2.wav'),
+        loadSound('assets/sound/keyboard_clicks/click3.wav'),
+        loadSound('assets/sound/keyboard_clicks/click4.wav'),
+    ];
+    for (var i = 0; i < keyboardClicks.length; i++) {
+        keyboardClicks[i].setVolume(0.5);
+    }
 }
 
 function setup() {

@@ -97,6 +97,10 @@ function displayChoices(...choices) { // variable length Choice array
     }
 }
 
+function clickIndex() {
+    return int(random(0,keyboardClicks.length));
+}
+
 function typeMessage(choice) {
     // print("typing message");
     // print(choice.messageShowing);
@@ -111,6 +115,7 @@ function typeMessage(choice) {
     if (choice.framesUntilChar <= 1) {
         choice.framesUntilChar = FRAMES_BETWEEN_CHARS;
         choice.messageIndex++;
+        keyboardClicks[clickIndex()].play();
     }
 }
 
@@ -131,6 +136,7 @@ function chatMouseClicked() {
     print("clicked at " + mouseX, mouseY);
     if (choice1 && choice2) {
         choiceClick();
+        keyboardClicks[clickIndex()].play();
     }
     // exit button
     if (canExit && mouseX > width-MARGIN_SIZE-32 && mouseY > MARGIN_SIZE && mouseX < width-MARGIN_SIZE && mouseY < MARGIN_SIZE + 32) {

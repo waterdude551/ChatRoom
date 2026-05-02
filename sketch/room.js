@@ -76,8 +76,8 @@ function loadRoomButtons() {
     noButton.style("font-size", "20px");
 
     
-    yesButton.position(leftButtonX, buttonY);
-    noButton.position(rightButtonX, buttonY);
+    yesButton.position(leftButtonX+(windowWidth - width) / 2, buttonY);
+    noButton.position(rightButtonX+(windowWidth - width) / 2, buttonY);
 
     yesButton.mousePressed(() => {
 
