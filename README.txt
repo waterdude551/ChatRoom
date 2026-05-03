@@ -1,2 +1,3 @@
-We are using Solution 5:
-Open /sketch/ with VSCode and host with Live Server.
+A short game about chatting.
+
+Inspired by ["The Difference"](https://qntm.org/differenc) by qntm
