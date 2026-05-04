@@ -49,9 +49,7 @@ let sleepingDuration = 3.0;
 //can sleep turns true after chats are complete for that day 
 
 function loadRoom(){
-    // loadImage('images/room_assets/door.png');
 
-    spriteImg = loadImage('images/room_assets/sprite.png');
     spritesheet = loadImage('images/room_assets/spritesheet.png');
     roombg = loadImage('images/room_assets/newroombg.png');
     roomFont = loadFont('assets/fonts/UbuntuMono-Regular.ttf');
@@ -228,7 +226,6 @@ class Sprite {
         this.currFrame = 1;
         this.direction = 0; // 0123 = down, left, right, up
         this.moving = false;
-        this.img = spriteImg;
     }
 
     move(){
@@ -242,7 +239,7 @@ class Sprite {
             }
         }
         if(keyIsDown(68)) {
-            if(this.x < width - spriteImg.width) {
+            if(this.x < width - 108) {
             this.x += speed
             this.direction = 2
             this.moving = true;
@@ -256,7 +253,7 @@ class Sprite {
             }
         }
         if(keyIsDown(83)) { 
-            if(this.y < height - spriteImg.height) {
+            if(this.y < height - 192) {
             this.y += speed
             this.direction = 0
             this.moving = true;

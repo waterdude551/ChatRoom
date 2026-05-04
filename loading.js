@@ -28,7 +28,8 @@ function drawLoading() {
     image(logo,0,0,543,178);
   // text( `x:  ${mouseX} y: ${mouseY}`, 60,60); 
     let lines = [
-        "Award Modular BIOS v45 PG, An Energy Star Ally",
+        "Please adjust your browser zoom level to fit the screen... \n",
+        "CR Modular BIOS v13 PG",
         "Copyright (C) 2026",
         "CHATROOM OS P5 ACPI BIOS Beta",
         "80372782 CPU at 80MHz",
@@ -37,8 +38,8 @@ function drawLoading() {
         "System Date 0/1/2222",
         "Parsing chats...\n",
         "Placing furniture....\n",
-        " \n",
-        " \n"
+        ". \n",
+        ". \n",
     ]
 
     let loadingBar = ("█ "); //i will get to this later 
@@ -53,7 +54,7 @@ function drawLoading() {
 
       counter++;//start count to begin text load
 
-  if (counter % 70 === 0 && index < lines.length) {
+  if (counter % 50 === 0 && index < lines.length) {
     index++;
   }
 
@@ -71,7 +72,7 @@ function drawLoading() {
     if(index >= lines.length) {
 
 counter2++;//old loop done start this one to color
-if(counter2 % 50 === 0 && index2 < startPrompt.length) {
+if(counter2 % int(random(30,120)) === 0 && index2 < startPrompt.length) {
     index2++;
   }
   //THIS LOOP IS FOR START TEXT!
